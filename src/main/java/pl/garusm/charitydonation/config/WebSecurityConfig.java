@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import pl.garusm.charitydonation.service.CustomUserDetailsService;
 
 import javax.sql.DataSource;
 
@@ -24,12 +24,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.jdbcAuthentication().dataSource(dataSource)
-                .passwordEncoder(passwordEncoder())
-                .withUser("admin").password(passwordEncoder().encode("admin"))
-                .roles("ADMIN", "USER");
+    @Bean
+    public CustomUserDetailsService customUserDetailsService(){
+        return new CustomUserDetailsService();
     }
 
     @Override
