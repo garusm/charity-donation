@@ -1,8 +1,10 @@
 package pl.garusm.charitydonation.entity;
 
 import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Set;
 
 @Data
@@ -20,6 +22,11 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
+    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    }
+
+    public User() {
+    }
 }
 
 
