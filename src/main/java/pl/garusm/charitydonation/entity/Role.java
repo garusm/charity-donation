@@ -12,8 +12,12 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "role_id")
     private int id;
-    @Column(name = "role")
-    private String name;
+
+    @Column(length = 60)
+    private String email;
+
+    @Column(length = 30)
+    private String role;
 
 }
 

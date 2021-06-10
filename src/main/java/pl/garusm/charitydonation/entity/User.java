@@ -1,10 +1,8 @@
 package pl.garusm.charitydonation.entity;
 
 import lombok.Data;
-import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 @Data
@@ -13,8 +11,8 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(nullable = false, unique = true)
-    private String username;
+    @Column(length = 60, unique = true)
+    private String email;
     private String password;
     private int enabled;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -22,7 +20,12 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+    public User(Long id, String email, String password, int enabled, Set<Role> roles) {
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
     }
 
     public User() {
