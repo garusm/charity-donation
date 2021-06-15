@@ -103,13 +103,16 @@
         <p>W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z którymi współpracujemy.
             Możesz sprawdzić czym się zajmują.</p>
 
-        <ul class="help--slides-items" th:each="inst : ${institutions}">
+        <ul class="help--slides-items">
             <li >
+            <th:block th:each="inst : ${institutions}">
                 <div class="col">
                     <div class="title" th:text="${inst.name}"></div>
                     <div class="subtitle" th:text="${inst.description}"></div>
                 </div>
+            </th:block>
             </li>
+
         </ul>
     </div>
 

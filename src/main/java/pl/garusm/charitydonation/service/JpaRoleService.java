@@ -2,12 +2,11 @@ package pl.garusm.charitydonation.service;
 
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
-import pl.garusm.charitydonation.entity.Role;
 import pl.garusm.charitydonation.repository.RoleRepository;
 
 @Repository
 @Primary
-public class JpaRoleService implements RoleSevice{
+public class JpaRoleService implements RoleService {
 
     private final RoleRepository roleRepository;
 
@@ -15,8 +14,4 @@ public class JpaRoleService implements RoleSevice{
         this.roleRepository = roleRepository;
     }
 
-    @Override
-    public Role findByName(String name) {
-        return roleRepository.findByName(name);
-    }
 }
